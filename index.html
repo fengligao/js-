@@ -2,28 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>知识总结</title>
-    <style type="text/css">
-        * {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>知识总结</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
 
-        textarea {
-            display: block;
-            margin: 50px auto;
-        }
-    </style>
+    textarea {
+      display: block;
+      margin: 50px auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
 </head>
-<body>
-<textarea id="textarea" name="" id="" cols="80" rows="80" disabled>
 
-		
+<body>
+  <h1>关于HTTP协议</h1>
+  <textarea id="textarea" name="" id="" cols="100" rows="80" disabled>
+
+
 HTTP协议：
 	1990年提出的 超文本传输协议   是从服务器传输数据到本地的传送协议  
 	HTTP 是基于TCP/IP 通信协议来传递数据 （HTML，图片，查询结果）
@@ -95,154 +100,210 @@ HTTP工作原理
 	4.释放连接 connection 模式为close 服务器会自动断开连接 如果模式为keepalive 则会保持一段时间 该时间段内还可以继续接受请求
 	5.客户端解析html内容 并显示
 
+  </textarea>
+  <h1>JavaScript：</h1>
+  <textarea name="" id="" cols="100" rows="40">
+      
+      js是解释型，松散型，基于事件驱动，基于对象的非阻塞的单线程语言
+      变量的声明声明变量不适用var 也可以直接赋值  相当于是给window设置了一个属性   window是全局的
+      var  let  const 的区别
+      var 在块级作用域外是可以访问到的
+      let和const在块级作用域外是访问不到的
+      var 可以重复声明  后声明的覆盖前面的
+      let 是不可一重复声明的
+      const 声明常量
+    
+      作用域 ：一段代码起作用的范围
+      全局环境 所有的代码都会放到一个位置来解析 这个位置称为全局环境
+      局部环境  每一个函数的内部都是一个局部环境
+      全局环境是包含局部环境的
+      
+      变量的作用域
+      在声明变量时环境中的任意位置 全局环境下就是全局变量  局部环境下就是局部变量（形参也是局部变量）
+      划分全局环境和局部环境的意义 就是防止局部环境中的变量污染全局环境，让变量命名变得更加简单
+    
+      函数也有作用域和变量的作用域表现形式是一致的
+    
+    
+      作用域链：当我们去访问某个函数的时候，在内存中会形成一个从当前函数环境到当前函数外部的函数环境，一直到全局环境的访问链。在当前函数中访问一个变量的时候js会从当前函数中开始寻找，如果当前函数没有那么js会到上一层函数寻找，找不到会继续往上一级寻找，直到找到为止，这就称为作用域链。
+    ES6中新增的：
+    
+      块级作用域：if(){},for(){},while(){} 也变成了跟函数一样的局部作用域。 let和const会识别这些块级作用域，就像var识别函数一样会变成一个单独的作用域。
+      在var 和 ES6中的let const是有区别的
+      var 在块级作用域以外是可以访问到的
+      let const 在块级作用域以外是访问不到的
+  </textarea>
+  <h1>GET  POST请求的区别</h1>
+  <textarea name="" id="" cols="100" rows="20">
+      GET  POST请求的区别
+      1.提交区别
+      get提交的数据会在地址栏中显示出来  把请求的数据放置在URL中 以 ？ 分隔  多个参数用 & 分隔  数据是数字字母原样发送 空格转换为 +    中文或其他字符 则直接把字符串用Base64加密   ASCII 阿斯克 2码
+      post提交地址栏不会改变   把数据放置在HTTP包的包体中
+      2.传输数据的大小   HTTP协议没有对传输数据的大小进行限制 HTTP协议也没有对URL的规范长度进行限制
+      实际开发中的主要限制有
+      GET：特定的浏览器和服务器对URL长度有限制   
+      POST 理论上不受URL长度的限制  但是实际各个web服务器会对post提交数据的大小进行限制
+      3.安全性
+      post比get提交方式要安全一些   get提交会将账户密码暴露在地址栏  因为登陆页面有可能被浏览器缓存 别人查看浏览器的历史纪录就会拿到账户密码    
+  </textarea>
+  <h1>深拷贝与浅拷贝的理解：</h1>
+  <textarea name="" id="" cols="100" rows="50">
+      //浅拷贝
+      var obj = {a: 10, b: 20, c: 30};
+      var obj2 = obj;
+      obj2.b = 100;
+      console.log(obj);//{a:10,b:100,c:30}
+      console.log(obj2);//{a:10,b:100,c:30}
+      //这里是把obj对象赋值给obj2，改变obj2的属性b，根obj的属性b也会被改变,这是浅拷贝
+  
+      //深拷贝
+      var obj3 = {a: 10, b: 20, c: 30};
+      var obj4 = {a: obj3.a, b: obj3.b, c: obj.c};
+      obj4.b = 200;
+      console.log(obj3); //{a:10,b:20,c:30}
+      console.log(obj4); //{a:10,b:200,c:30}
+      //上面这种赋值就是深拷贝，不会改变到obj3的属性值。
+  
+      /*浅拷贝只是复制某个对象的指针，而不是复制对象本身，新旧对象还是共享一块内存。但深拷贝会创造另外一个一摸一样的对象，新对象跟原来的对象不共享内存，修改新对象不会修改到原对象。*/
+  
+      ////浅拷贝的实现方式
+      function simpleClone(pasteObj) {
+          var obj = {}; //声明一个空对象
+          for (var i in pasteObj) {
+              console.log(pasteObj[i]); //遍历对象
+              obj[i] = pasteObj[i];
+          }
+          return obj;
+      }
+  
+      var Obj = {
+          a: 10,
+          b: {a: 10, b: 20},
+          c: ["a", "b", "c", "d"]
+      };
+  
+      var newObj = simpleClone(Obj);
+      console.log(newObj);  //输出与Obj一样的对象
+      newObj.b.a = 30; //设置新对象b属性下的a属性为30
+      console.log(Obj, newObj)//输出30  原对象与现对象均被更改
+  
+      newObj.c.push("e");
+      console.log(Obj, newObj); //Obj与newObj的c属性 数组都添加一个新元素"e"
+      console.log(Obj.c); //["a", "b", "c", "d", "e"]
+  </textarea>
+  <h1>正则表达式获取URL内的参数</h1>
+  <textarea name="" id="" cols="100" rows="30">
 
-GET  POST请求的区别
-	1.提交区别
-	get提交的数据会在地址栏中显示出来  把请求的数据放置在URL中 以 ？ 分隔  多个参数用 & 分隔  数据是数字字母原样发送 空格转换为 +    中文或其他字符 则直接把字符串用Base64加密   ASCII 阿斯克 2码
-	post提交地址栏不会改变   把数据放置在HTTP包的包体中
-	2.传输数据的大小   HTTP协议没有对传输数据的大小进行限制 HTTP协议也没有对URL的规范长度进行限制
-	实际开发中的主要限制有
-	GET：特定的浏览器和服务器对URL长度有限制   
-	POST 理论上不受URL长度的限制  但是实际各个web服务器会对post提交数据的大小进行限制
-	3.安全性
-	post比get提交方式要安全一些   get提交会将账户密码暴露在地址栏  因为登陆页面有可能被浏览器缓存 别人查看浏览器的历史纪录就会拿到账户密码
-
-
-
-JavaScript：
-	
-	js是解释型，松散型，基于事件驱动，基于对象的非阻塞的单线程语言
-	变量的声明声明变量不适用var 也可以直接赋值  相当于是给window设置了一个属性   window是全局的
-	var  let  const 的区别
-	var 在块级作用域外是可以访问到的
-	let和const在块级作用域外是访问不到的
-	var 可以重复声明  后声明的覆盖前面的
-	let 是不可一重复声明的
-	const 声明常量
-
-	作用域 ：一段代码起作用的范围
-	全局环境 所有的代码都会放到一个位置来解析 这个位置称为全局环境
-	局部环境  每一个函数的内部都是一个局部环境
-	全局环境是包含局部环境的
-	
-	变量的作用域
-	在声明变量时环境中的任意位置 全局环境下就是全局变量  局部环境下就是局部变量（形参也是局部变量）
-	划分全局环境和局部环境的意义 就是防止局部环境中的变量污染全局环境，让变量命名变得更加简单
-
-	函数也有作用域和变量的作用域表现形式是一致的
-
-
-	作用域链：当我们去访问某个函数的时候，在内存中会形成一个从当前函数环境到当前函数外部的函数环境，一直到全局环境的访问链。在当前函数中访问一个变量的时候js会从当前函数中开始寻找，如果当前函数没有那么js会到上一层函数寻找，找不到会继续往上一级寻找，直到找到为止，这就称为作用域链。
-ES6中新增的：
-
-	块级作用域：if(){},for(){},while(){} 也变成了跟函数一样的局部作用域。 let和const会识别这些块级作用域，就像var识别函数一样会变成一个单独的作用域。
-	在var 和 ES6中的let const是有区别的
-	var 在块级作用域以外是可以访问到的
-	let const 在块级作用域以外是访问不到的
-
-
-深拷贝与浅拷贝的理解：
-
-    //浅拷贝
-    var obj = {a: 10, b: 20, c: 30};
-    var obj2 = obj;
-    obj2.b = 100;
-    console.log(obj);//{a:10,b:100,c:30}
-    console.log(obj2);//{a:10,b:100,c:30}
-    //这里是把obj对象赋值给obj2，改变obj2的属性b，根obj的属性b也会被改变,这是浅拷贝
-
-    //深拷贝
-    var obj3 = {a: 10, b: 20, c: 30};
-    var obj4 = {a: obj3.a, b: obj3.b, c: obj.c};
-    obj4.b = 200;
-    console.log(obj3); //{a:10,b:20,c:30}
-    console.log(obj4); //{a:10,b:200,c:30}
-    //上面这种赋值就是深拷贝，不会改变到obj3的属性值。
-
-    /*浅拷贝只是复制某个对象的指针，而不是复制对象本身，新旧对象还是共享一块内存。但深拷贝会创造另外一个一摸一样的对象，新对象跟原来的对象不共享内存，修改新对象不会修改到原对象。*/
-
-    ////浅拷贝的实现方式
-    function simpleClone(pasteObj) {
-        var obj = {}; //声明一个空对象
-        for (var i in pasteObj) {
-            console.log(pasteObj[i]); //遍历对象
-            obj[i] = pasteObj[i];
+    function getRequest () {
+      // let url = '?openid=zheshiopenida&role=wangzherongyao&nickname=libai&level=1'
+      // let url = location.search
+      let theRequest = new Object()
+      if (url.indexOf('?') !== -1) {
+        let str = url.substr(1)
+        let strs = str.split('&')
+        for (let i = 0; i < strs.length; i++) {
+          theRequest[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1])
         }
-        return obj;
+      }
+      return theRequest
     }
 
-    var Obj = {
-        a: 10,
-        b: {a: 10, b: 20},
-        c: ["a", "b", "c", "d"]
-    };
+    let request = getRequest()
+    let a = request['role']
+    let b = request['openid']
+    let c = request['nickname']
+    let d = request['level']
+    console.log(a) // wangzherongyao
+    console.log(b) // zheshiopenida
+    console.log(c) // libai
+    console.log(d) // 1
 
-    var newObj = simpleClone(Obj);
-    console.log(newObj);  //输出与Obj一样的对象
-    newObj.b.a = 30; //设置新对象b属性下的a属性为30
-    console.log(Obj, newObj)//输出30  原对象与现对象均被更改
-
-    newObj.c.push("e");
-    console.log(Obj, newObj); //Obj与newObj的c属性 数组都添加一个新元素"e"
-    console.log(Obj.c); //["a", "b", "c", "d", "e"]
-
-
-
-
-
-
-
-
-
-
-
-
-	</textarea>
+  </textarea>
 </body>
+
 </html>
 
 <script>
+  //浅拷贝
+  var obj = {
+    a: 10,
+    b: 20,
+    c: 30
+  };
+  var obj2 = obj;
+  obj2.b = 100;
+  console.log(obj); //{a:10,b:100,c:30}
+  console.log(obj2); //{a:10,b:100,c:30}
+  //这里是把obj对象赋值给obj2，改变obj2的属性b，根obj的属性b也会被改变,这是浅拷贝
 
-    //浅拷贝
-    var obj = {a: 10, b: 20, c: 30};
-    var obj2 = obj;
-    obj2.b = 100;
-    console.log(obj);//{a:10,b:100,c:30}
-    console.log(obj2);//{a:10,b:100,c:30}
-    //这里是把obj对象赋值给obj2，改变obj2的属性b，根obj的属性b也会被改变,这是浅拷贝
+  //深拷贝
+  var obj3 = {
+    a: 10,
+    b: 20,
+    c: 30
+  };
+  var obj4 = {
+    a: obj3.a,
+    b: obj3.b,
+    c: obj.c
+  };
+  obj4.b = 200;
+  console.log(obj3); //{a:10,b:20,c:30}
+  console.log(obj4); //{a:10,b:200,c:30}
+  //上面这种赋值就是深拷贝，不会改变到obj3的属性值。
 
-    //深拷贝
-    var obj3 = {a: 10, b: 20, c: 30};
-    var obj4 = {a: obj3.a, b: obj3.b, c: obj.c};
-    obj4.b = 200;
-    console.log(obj3); //{a:10,b:20,c:30}
-    console.log(obj4); //{a:10,b:200,c:30}
-    //上面这种赋值就是深拷贝，不会改变到obj3的属性值。
+  /*浅拷贝只是复制某个对象的指针，而不是复制对象本身，新旧对象还是共享一块内存。但深拷贝会创造另外一个一摸一样的对象，新对象跟原来的对象不共享内存，修改新对象不会修改到原对象。*/
 
-    /*浅拷贝只是复制某个对象的指针，而不是复制对象本身，新旧对象还是共享一块内存。但深拷贝会创造另外一个一摸一样的对象，新对象跟原来的对象不共享内存，修改新对象不会修改到原对象。*/
-
-    ////浅拷贝的实现方式
-    function simpleClone(pasteObj) {
-        var obj = {}; //声明一个空对象
-        for (var i in pasteObj) {
-            console.log(pasteObj[i]); //遍历对象
-            obj[i] = pasteObj[i];
-        }
-        return obj;
+  ////浅拷贝的实现方式
+  function simpleClone(pasteObj) {
+    var obj = {}; //声明一个空对象
+    for (var i in pasteObj) {
+      console.log(pasteObj[i]); //遍历对象
+      obj[i] = pasteObj[i];
     }
+    return obj;
+  }
 
-    var Obj = {
-        a: 10,
-        b: {a: 10, b: 20},
-        c: ["a", "b", "c", "d"]
-    };
+  var Obj = {
+    a: 10,
+    b: {
+      a: 10,
+      b: 20
+    },
+    c: ["a", "b", "c", "d"]
+  };
 
-    var newObj = simpleClone(Obj);
-    console.log(newObj);  //输出与Obj一样的对象
-    newObj.b.a = 30; //设置新对象b属性下的a属性为30
-    console.log(Obj, newObj)//输出30  原对象与现对象均被更改
+  var newObj = simpleClone(Obj);
+  console.log(newObj); //输出与Obj一样的对象
+  newObj.b.a = 30; //设置新对象b属性下的a属性为30
+  console.log(Obj, newObj) //输出30  原对象与现对象均被更改
 
-    newObj.c.push("e");
-    console.log(Obj, newObj); //Obj与newObj的c属性 数组都添加一个新元素"e"
-    console.log(Obj.c); //["a", "b", "c", "d", "e"]
+  newObj.c.push("e");
+  console.log(Obj, newObj); //Obj与newObj的c属性 数组都添加一个新元素"e"
+  console.log(Obj.c); //["a", "b", "c", "d", "e"]
+
+
+  function getRequest() {
+    let url = '?openid=zheshiopenida&role=wangzherongyao&nickname=libai&level=1'
+    // let url = location.search
+    let theRequest = new Object()
+    if (url.indexOf('?') !== -1) {
+      let str = url.substr(1)
+      let strs = str.split('&')
+      for (let i = 0; i < strs.length; i++) {
+        theRequest[strs[i].split('=')[0]] = unescape(strs[i].split('=')[1])
+      }
+    }
+    return theRequest
+  }
+
+  let request = getRequest()
+  let a = request['role']
+  let b = request['openid']
+  let c = request['nickname']
+  let d = request['level']
+  console.log(a)
+  console.log(b)
+  console.log(c)
+  console.log(d)
 </script>
