@@ -80,3 +80,17 @@
   console.log(b)
   console.log(c)
   console.log(d)
+
+  // try catch 的使用，应该永远放在你的控制范围内，而不应该防范未知的错误，也就是说你很清楚知道这里会有可能出现的错误，
+  // 而你不知道什么前提下会出错，你就是要故意利用报错信息来区分错误，后续的程序会解决所有的出错，让程序继续执行
+  // 大多数情况下try catch适用于两种场合， 浏览器原罪场合，就是兼容性场合
+  // try内不能做真假判断  
+  try {
+    window.a.b === 2
+  }
+  catch (e) {
+    console.log(e)
+    window.a = {}
+    window.a.b = 2
+    console.log(window)
+  }
